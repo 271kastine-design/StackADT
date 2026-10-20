@@ -57,26 +57,13 @@ public class LinkedStack<T> implements StackInterface<T>
 	{
 		int position = 1;
 		LLNode<T> temp = top;
-		if(empty()){
-			throw new StackUnderflowException();
-		}
-		else if(top.getInfo() == null){
-			return -1;
-		}
-		if(temp.getLink() == null){
-			if(top.getInfo().equals(o)){
+		while (temp != null) {
+			if ((temp.getInfo() == null && o == null) ||
+					(temp.getInfo() != null && temp.getInfo().equals(o))) {
 				return position;
 			}
-			else{
-				return -1;
-			}
-		}
-		while(top.getLink() != null){
-			if(top.getInfo().equals(o)){
-				return position;
-			}
+			temp = temp.getLink();
 			position++;
-			top = top.getLink();
 		}
 		return -1;
 	}
