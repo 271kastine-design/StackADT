@@ -56,11 +56,27 @@ public class LinkedStack<T> implements StackInterface<T>
 	public int search(Object o)
 	{
 		int position = 1;
-		for (LLNode<T> current = top; current != null; current = current.getLink())
-		{
-			if (o == null ? current.getInfo() == null : o.equals(current.getInfo()))
+		LLNode<T> temp = top;
+		if(empty()){
+			throw new StackUnderflowException();
+		}
+		else if(top.getInfo() == null){
+			return -1;
+		}
+		if(temp.getLink() == null){
+			if(top.getInfo().equals(o)){
 				return position;
+			}
+			else{
+				return -1;
+			}
+		}
+		while(top.getLink() != null){
+			if(top.getInfo().equals(o)){
+				return position;
+			}
 			position++;
+			top = top.getLink();
 		}
 		return -1;
 	}
