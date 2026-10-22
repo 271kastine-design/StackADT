@@ -29,7 +29,6 @@ public class Brackets
             char c = b.charAt(i);
             if(c == '{'){
                 brackets.push(c);
-
             }
             else{
                 if(brackets.size() == 0){
